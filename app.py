@@ -6,7 +6,7 @@ from scipy.io import wavfile
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/analyze_audio', methods=['POST'])
+@app.route('/analyze_audio', methods=['POST', 'GET'])
 def analyze_audio():
   if 'audio' not in request.files:
         return "No audio part", 400
