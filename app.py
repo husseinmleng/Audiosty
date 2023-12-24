@@ -3,7 +3,7 @@ from flask_cors import CORS
 from logic import Speaker_speech_analysis
 from scipy.io import wavfile
 
-app = Flask(__name__)
+app = Flask(__name__)  
 CORS(app)
 
 @app.route('/analyze_audio', methods=['POST', 'GET'])
