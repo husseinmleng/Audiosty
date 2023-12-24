@@ -1,0 +1,10 @@
+phonemizer
+wave
+torch
+openai-whisper
+gradio
+scipy
+numpy 
+resampy
+Levenshtein
+librosa
