@@ -10,14 +10,14 @@ FROM python:3.11-slim
 ADD requirements.txt requirements.txt
 ADD install.sh install.sh
 
-RUN install.sh
+RUN ["./install.sh"]
 
 WORKDIR /app
 COPY . .
 
 
 # Run app.py when the container launches
-CMD ["start.sh"]
+CMD ["./app/start.sh"]
 
 
 # CMD ["gunicorn", "wsgi:pp", '-b', '0.0.0.0:8000', ]
