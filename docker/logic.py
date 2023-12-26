@@ -2,7 +2,7 @@ from phonemizer.separator import Separator
 from phonemizer import phonemize
 # from phonemizer.backend.espeak.wrapper import EspeakWrapper
 from Levenshtein import distance as levenshtein_distance    
-from scoring import calculate_fluency_and_pronunciation
+from docker.scoring import calculate_fluency_and_pronunciation
 
 import whisper 
 import torch 

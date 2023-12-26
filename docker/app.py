@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from logic import Speaker_speech_analysis
+from docker.logic import Speaker_speech_analysis
 from scipy.io import wavfile
 
 app = Flask(__name__)  
