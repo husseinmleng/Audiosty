@@ -1,15 +1,25 @@
 # Use an official Python runtime as a parent image
-FROM python:3.10-alpine3.18
+FROM python:3.11-slim
 
 # Set the working directory in the container
-WORKDIR /usr/src/app
 
 # Copy the current directory contents into the container at /usr/src/app
-COPY . .
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-RUN apt-get install espeak-ng
+# RUN apt-get install espeak-ng
+ADD requirements.txt requirements.txt
+ADD install.sh install.sh
+
+RUN install.sh
+
+WORKDIR /app
+COPY . .
+
 
 # Run app.py when the container launches
-CMD ["gunicorn", "wsgi:app", '-b', '0.0.0.0:5000', ]
+CMD ["start.sh"]
+
+
+# CMD ["gunicorn", "wsgi:pp", '-b', '0.0.0.0:8000', ]
+# ENTRYPOINT [ "python", "flaskApp.py" ]
+# EXPOSE 8080
