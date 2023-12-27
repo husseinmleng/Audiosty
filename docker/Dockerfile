@@ -10,14 +10,17 @@ FROM python:3.11-slim
 ADD requirements.txt requirements.txt
 ADD install.sh install.sh
 
-RUN ["./install.sh"]
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+RUN pip install --no-cache-dir gunicorn
+RUN pip install --no-cache-dir -r requirements.txt
+RUN mkdir app
 
 WORKDIR /app
 COPY . .
 
 
 # Run app.py when the container launches
-CMD ["./app/start.sh"]
+CMD ["/app/start.sh"]
 
 
 # CMD ["gunicorn", "wsgi:pp", '-b', '0.0.0.0:8000', ]

@@ -1,5 +1,6 @@
 gunicorn 
 phonemizer
+flask
 wave
 numpy
 openai-whisper
