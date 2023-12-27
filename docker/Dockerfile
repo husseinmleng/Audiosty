@@ -7,8 +7,8 @@ FROM python:3.11-slim
 
 # Install any needed packages specified in requirements.txt
 # RUN apt-get install espeak-ng
-ADD requirements.txt requirements.txt
-ADD install.sh install.sh
+ADD ./docker/requirements.txt requirements.txt
+ADD ./docker/install.sh install.sh
 
 RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 RUN pip install --no-cache-dir gunicorn
@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN mkdir app
 
 WORKDIR /app
-COPY . .
+COPY ./docker .
 
 
 # Run app.py when the container launches
