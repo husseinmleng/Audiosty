@@ -5,7 +5,9 @@ from scipy.io import wavfile
 
 app = Flask(__name__)  
 # CORS(app)
-
+@app.route('/health')
+def test():
+    return 'hello world'
 @app.route('/analyze_audio', methods=['POST', 'GET'])
 def analyze_audio():
     if 'audio' not in request.files:
@@ -21,7 +23,7 @@ def analyze_audio():
     if audio and text:
         # You can add file saving logic here
         temp_filename = 'temp_audio.wav'
-        wavfile.write(temp_filename, audio[0], audio[1])
+        wavfile.write(temp_filename,16000, audio[1])
 
 
         result = Speaker_speech_analysis(temp_filename, text)
@@ -38,6 +40,6 @@ def analyze_audio():
     return "Error processing request", 400
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=False, host='0.0.0.0', port=5000)
     
     
