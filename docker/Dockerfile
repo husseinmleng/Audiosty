@@ -17,7 +17,7 @@ RUN mkdir app
 
 WORKDIR /app
 COPY /docker .
-EXPOSE 5000
+EXPOSE 80
 
 # Define environment variable
 ENV NAME World
