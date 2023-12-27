@@ -2,7 +2,7 @@ from phonemizer.separator import Separator
 from phonemizer import phonemize
 # from phonemizer.backend.espeak.wrapper import EspeakWrapper
 from Levenshtein import distance as levenshtein_distance    
-from scoring import calculate_fluency_and_pronunciation
+from docker.scoring import calculate_fluency_and_pronunciation
 
 import whisper 
 import torch 
@@ -28,12 +28,13 @@ def rate_pronunciation(expected_phonemes, actual_phonemes):
     results = []
     for i, base_word in enumerate(actual_phonemes):
         best_dist = float('inf')
-        for pred_word_id in range(max(0, i-1), i + min(3, len(expected_phonemes) - i)):
-            dist = levenshtein_distance(expected_phonemes[pred_word_id], base_word,)
-            if dist < best_dist:
-                best_dist = dist
-            if best_dist == 0:  # Early stopping on perfect match
-                break
+        if i <= len(expected_phonemes): 
+            for j in range(max(0, i-1), i + min(3, len(expected_phonemes) - i)):
+                dist = levenshtein_distance(expected_phonemes[j], base_word,)
+                if dist < best_dist:
+                    best_dist = dist
+                if best_dist == 0:  # Early stopping on perfect match
+                    break
         error_threshold = len(base_word) * 0.40
         if best_dist == 0:
            results.append(3) 

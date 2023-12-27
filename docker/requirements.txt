@@ -1,11 +1,10 @@
 gunicorn 
 phonemizer
+flask
 wave
-torch
+numpy
 openai-whisper
-gradio
 scipy
-numpy 
 resampy
 Levenshtein
 librosa
