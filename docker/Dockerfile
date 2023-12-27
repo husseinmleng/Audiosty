@@ -17,7 +17,10 @@ RUN mkdir app
 
 WORKDIR /app
 COPY /docker .
+EXPOSE 5000
 
+# Define environment variable
+ENV NAME World
 RUN chmod +x /app/start.sh
 # Run app.py when the container launches
 CMD ["/app/start.sh"]
