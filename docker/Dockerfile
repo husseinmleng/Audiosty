@@ -18,7 +18,7 @@ RUN mkdir app
 WORKDIR /app
 COPY /docker .
 
-
+RUN chmod +x /app/start.sh
 # Run app.py when the container launches
 CMD ["/app/start.sh"]
 
