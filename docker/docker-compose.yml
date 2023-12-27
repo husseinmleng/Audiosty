@@ -1,11 +1,13 @@
-version: '3.11'
+version: '3.8'
 
 services:
   myapp:
     build: .
+    image: flask
     ports:
       - "80:80"
     environment:
       - NAME=World
     volumes:
       - .:/app
+
