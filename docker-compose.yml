@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  audiosty:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./docker:/app
+    environment:
+      - NAME=World
